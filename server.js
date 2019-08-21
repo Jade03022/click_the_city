@@ -80,27 +80,27 @@ app.get("/", (req,res)=>{
 //                    console.log(err)
 //                })
 //
-                new User({      
-                    username : "admin",
-                    password : cryptojs.AES.encrypt("1234","password_key"),
-                    type : "admin",
-                    mall_managed : "none"
-                }).save().then((doc)=>{
-                    console.log(doc)
-                }, (err)=>{
-                    console.log(err)
-                })
-    
-    new User({      
-                    username : "sm_cash",
-                    password : cryptojs.AES.encrypt("cash","password_key"),
-                    type : "moderator",
-                    mall_managed : "Cash and Carry"
-                }).save().then((doc)=>{
-                    console.log(doc)
-                }, (err)=>{
-                    console.log(err)
-                })
+//                new User({      
+//                    username : "admin",
+//                    password : cryptojs.AES.encrypt("1234","password_key"),
+//                    type : "admin",
+//                    mall_managed : "none"
+//                }).save().then((doc)=>{
+//                    console.log(doc)
+//                }, (err)=>{
+//                    console.log(err)
+//                })
+//    
+//    new User({      
+//                    username : "sm_cash",
+//                    password : cryptojs.AES.encrypt("cash","password_key"),
+//                    type : "moderator",
+//                    mall_managed : "Cash and Carry"
+//                }).save().then((doc)=>{
+//                    console.log(doc)
+//                }, (err)=>{
+//                    console.log(err)
+//                })
     
 //    let cinema = new Cinema({name : String,
 //    mall : String,
@@ -130,6 +130,39 @@ app.get("/", (req,res)=>{
 //    }, (err)=>{
 //        res.send(err)
 //    })
+    
+    new Cinema({
+        name : "Cash and Carry Cinema 1",
+        mall : "Cash and Carry",
+        city : "Pasay City",
+        movies : []
+    }).save().then((doc)=>{
+        console.log(doc)
+    }, (err)=>{
+        res.send(err)
+    })
+    
+    new Cinema({
+        name : "Cash and Carry Cinema 2",
+        mall : "Cash and Carry",
+        city : "Pasay City",
+        movies : []
+    }).save().then((doc)=>{
+        console.log(doc)
+    }, (err)=>{
+        res.send(err)
+    })
+    
+    new Cinema({
+        name : "Cash and Carry Cinema 3",
+        mall : "Cash and Carry",
+        city : "Pasay City",
+        movies : []
+    }).save().then((doc)=>{
+        console.log(doc)
+    }, (err)=>{
+        res.send(err)
+    })
     
     if(req.cookies["current_user"]){
         if(req.cookies["current_user"] == "admin")
