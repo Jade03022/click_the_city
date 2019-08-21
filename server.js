@@ -11,6 +11,8 @@ const {Movie} = require(__dirname + "/model/movie.js")
 const {Cinema} = require(__dirname + "/model/cinema.js")
 const {ScreeningHistory} = require(__dirname + "/model/screening_history.js")
 
+var portNumber = process.env.PORT || 3000
+
 const app = express()
 const image_dest = "public/"
 
@@ -795,8 +797,8 @@ app.get("/logout", (req, res)=>{
     res.redirect("/")
 })
 
-app.listen(3000, ()=>{
-    console.log("live at port 3000")
+app.listen(portNumber, ()=>{
+    console.log("live at port " + portNumber)
 })
 
 function formatDate(date){
