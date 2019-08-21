@@ -798,7 +798,7 @@ app.get("/logout", (req, res)=>{
 })
 
 app.listen(portNumber, ()=>{
-    console.log("live at port " + portNumber)
+    //console.log("live at port " + portNumber)
 })
 
 function formatDate(date){
