@@ -80,16 +80,27 @@ app.get("/", (req,res)=>{
 //                    console.log(err)
 //                })
 //
-//                new User({      
-//                    username : "admin",
-//                    password : cryptojs.AES.encrypt("admin1234","password_key"),
-//                    type : "admin",
-//                    mall_managed : "none"
-//                }).save().then((doc)=>{
-//                    console.log(doc)
-//                }, (err)=>{
-//                    console.log(err)
-//                })
+                new User({      
+                    username : "admin",
+                    password : cryptojs.AES.encrypt("1234","password_key"),
+                    type : "admin",
+                    mall_managed : "none"
+                }).save().then((doc)=>{
+                    console.log(doc)
+                }, (err)=>{
+                    console.log(err)
+                })
+    
+    new User({      
+                    username : "sm_cash",
+                    password : cryptojs.AES.encrypt("cash","password_key"),
+                    type : "moderator",
+                    mall_managed : "Cash and Carry"
+                }).save().then((doc)=>{
+                    console.log(doc)
+                }, (err)=>{
+                    console.log(err)
+                })
     
 //    let cinema = new Cinema({name : String,
 //    mall : String,
