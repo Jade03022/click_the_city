@@ -17,7 +17,7 @@ const app = express()
 const image_dest = "public/"
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017/db",{
+mongoose.connect("mongodb+srv://restorer:03022@mydatabase-alwi6.mongodb.net/test?retryWrites=true&w=majority",{
     useNewUrlParser : true
 })
 
