@@ -1,0 +1,405 @@
+.transbox{
+    width: 70%;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 70px;
+    background-color: rgba(53, 53, 53, .6);
+    border: 1px solid;
+    border-radius: 15px 15px 15px 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-image: url(Background.jpeg);
+    background-size: 100% 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navigation{
+    width: 100%;
+    height: 60px;
+    top: 0;
+    padding: 0;
+    position: fixed; 
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    flex-flow: row;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+#brand{
+    display: flex;
+    justify-content: flex-start;
+}
+
+ul{
+    display: inline-block;
+}
+
+li{
+    display: inline-block;
+    padding-right: 30px;
+}
+
+.movies{
+    color: #888888;
+    text-decoration: none;
+}
+
+.cinemas{
+    color: white;
+    text-decoration: none;
+}
+
+.screening{
+    color: white;
+    text-decoration: none;
+}
+
+#movies:hover{
+    color: #D3D3D3;
+}
+
+#cinemas:hover{
+    color: #D3D3D3;
+}
+
+#screening:hover{
+    color: #D3D3D3;
+}
+
+.cinemas{
+    padding: 15px;
+}
+
+.screening{
+    padding: 15px;
+}
+
+/*Movies Tab*/
+.movies{
+    color: white;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.moviesmenu{
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 40px;
+    left: 15px;
+}
+
+.moviesmenu a{
+    font-size: 12px;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.moviesmenu a:hover{
+    background-color: #888888;
+    color: white;
+}
+
+.dropdown:hover .moviesmenu{
+    display: block;
+}
+
+.dropdown:hover .movies{
+    color: #D3D3D3;
+}
+
+
+/*Cinemas Tab*/
+.cinemas{
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.cinemasmenu{
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 40px;
+    left: 15px;
+}
+
+.cinemasmenu a{
+    font-size: 12px;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.cinemasmenu a:hover{
+    background-color: #888888;
+    color: white;
+}
+
+.dropdown:hover .cinemasmenu{
+    display: block;
+}
+
+.dropdown:hover .cinemas{
+    color: #D3D3D3;
+}
+
+
+/*Logout Button*/
+.moderator{
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.logout{
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 20px;
+    right: 15px;
+}
+
+.logout a{
+    font-size: 12px;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.logout a:hover{
+    background-color: #888888;
+    color: white;
+}
+
+.dropdown:hover .logout{
+    display: block;
+    float: right;
+}
+
+.dropdown:hover .moderator{
+    color: #D3D3D3;
+}
+
+.moderator{
+    font-size: 16px;
+    padding-right: 15px;
+}
+
+.moderator{
+    font-size: 16px;
+    padding-right: 15px;
+}
+
+.main{
+    margin-top: 60px;
+    display:flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.main-nav-config{
+    display: flex;
+    justify-content: space-between;
+}
+
+#showing{
+    width: 250px;
+    color: #fff;
+    margin-left: 25%;
+    padding: 10px;
+}
+
+#searchbar{
+    color: #fff;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+#search{
+    position: relative;
+    right: -580px;
+}
+
+.date{
+    position: relative;
+    color: white;
+    left: 25%;
+    padding: 10px;
+}
+
+.listOfCinemas{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.releasedate{
+    border: 1px solid;
+    border-radius: 3px;
+    color: #666;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    padding: 5px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.cinema{
+    border: 1px solid;
+    border-radius: 3px;
+    color: #666;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    padding: 5px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.cinemaname{
+    background-color: #D3D3D3;
+    padding: 3px;
+    font-size: 20px;
+}
+
+.movie{
+    display:flex;
+    flex-direction: row ;
+}
+
+.img{
+    display:inline-block;
+    width: 30%;
+    height: 260px;
+    background-image: url("TheLionKingPoster.jpg");
+    background-size: 100% 100%;
+}
+
+.details{
+    display:inline-block;
+    padding: 5px;
+    width: 70%;
+}
+
+.top1{
+    padding-bottom: 5px;
+}
+
+.top2{
+    padding-bottom: 5px;
+}
+
+.top3{
+    padding-bottom: 5px;
+}
+
+.movie_title{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.rated_genre_duration{
+    font-size: 14px;
+    padding-left: 3px;
+    color: #888888;
+}
+
+.summary{
+    font-size: 14px;
+    color: #666666;
+}
+
+.critic_rating{
+    font-size: 16px;
+    color: #888888;
+}
+
+.user_rating{
+    font-size: 16px;
+    color: #888888;
+}
+
+.rating{
+    font-size: 18px;
+    color: #888888;
+}
+
+.tag{
+    color: #888888;
+}
+
+.casts{
+    font-size: 16px;
+    padding-bottom: 5px;
+    color: #607890;
+}
+
+.director{
+    font-size: 16px;
+    padding-bottom: 5px;
+    color: #607890;
+}
+
+.bottom{
+    font-size: 16px;
+}
+
+.showtime{
+    display: flex;
+    flex-direction: row;
+}
+
+.time{
+    padding: 3px;
+    margin: 2px;
+    border: 1px;
+    border-radius: 3px;
+    background-color:  #D3D3D3;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "arial";
+}
