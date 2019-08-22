@@ -75,16 +75,16 @@ app.get("/", (req,res)=>{
 //                    console.log(err)
 //                })
 //    
-//    new User({      
-//                    username : "sm_cash",
-//                    password : cryptojs.AES.encrypt("cash","password_key"),
-//                    type : "moderator",
-//                    mall_managed : "Cash and Carry"
-//                }).save().then((doc)=>{
-//                    console.log(doc)
-//                }, (err)=>{
-//                    console.log(err)
-//                })
+                new User({      
+                    username : "sm_moa",
+                    password : cryptojs.AES.encrypt("moa","password_key"),
+                    type : "moderator",
+                    mall_managed : "SM Mall of Asia"
+                }).save().then((doc)=>{
+                    console.log(doc)
+                }, (err)=>{
+                    console.log(err)
+                })
     
 //    let cinema = new Cinema({name : String,
 //    mall : String,
@@ -116,10 +116,38 @@ app.get("/", (req,res)=>{
 //    })
     
 //    new Cinema({
-//        name : "Cash and Carry Cinema 1",
-//        mall : "Cash and Carry",
-//        city : "Pasay City",
-//        movies : []
+//        name : "Makati Cinema 1",
+//        mall : "Makati Mall",
+//        city : "Makati",
+//        movies : [{
+//            "genre" : [ 
+//                "Adventure", 
+//                "Comedy"
+//            ],
+//            "casts" : [ 
+//                "Donald Glover", 
+//                "Beyonce Knowles", 
+//                "Chiwetel Ejiofor"
+//            ],
+//            "rated" : "/0d4e42ae-c001-4331-903d-e333d4efa00a/imgmovie/ratedg.jpg",
+//            "title" : "The Lion King",
+//            "duration" : "2hrs 5mins",
+//            "mpaa_rating" : "5",
+//            "star_rating" : "4",
+//            "release_date" : '2019-08-08',
+//            "description" : "After the murder of his father, a young lion prince flees his kingdom only to learn the true meaning of responsibility and bravery.",
+//            "director" : "Jon Favreau",
+//            "image" : "/232ba779-f556-4fb2-a5cf-20166bf7a962/imgmovie/TheLionKingPoster.jpg",
+//            "schedules" : [ 
+//                {
+//                    "showtimes" : [ 
+//                        "8:00am", 
+//                        "12:00pm"
+//                    ],
+//                    "date" : '2019-08-21'
+//                }
+//            ]
+//        }]
 //    }).save().then((doc)=>{
 //        console.log(doc)
 //    }, (err)=>{
