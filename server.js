@@ -45,22 +45,6 @@ bb.extend(app,{
     allowedPath: /./
 })
 
-//app.get("/", (req,res)=>{
-//    res.render("index.hbs")
-//})
-//
-//app.post("/register", urlencoder, (req,res)=>{
-//    console.log("POST /register")
-//    console.log(req.files.imgmovie.uuid)
-//    console.log(req.files.imgmovie.field)
-//    console.log(req.files.imgmovie.filename)
-//    
-//    res.render("photo.hbs", {
-//        filename :  "/" + req.files.imgmovie.uuid 
-//                    + "/" + req.files.imgmovie.field 
-//                    + "/" + req.files.imgmovie.filename  
-//    })
-//})
 app.get("/", (req,res)=>{
 //                new Movie({
 //                    rated: "String",
@@ -131,38 +115,38 @@ app.get("/", (req,res)=>{
 //        res.send(err)
 //    })
     
-    new Cinema({
-        name : "Cash and Carry Cinema 1",
-        mall : "Cash and Carry",
-        city : "Pasay City",
-        movies : []
-    }).save().then((doc)=>{
-        console.log(doc)
-    }, (err)=>{
-        res.send(err)
-    })
-    
-    new Cinema({
-        name : "Cash and Carry Cinema 2",
-        mall : "Cash and Carry",
-        city : "Pasay City",
-        movies : []
-    }).save().then((doc)=>{
-        console.log(doc)
-    }, (err)=>{
-        res.send(err)
-    })
-    
-    new Cinema({
-        name : "Cash and Carry Cinema 3",
-        mall : "Cash and Carry",
-        city : "Pasay City",
-        movies : []
-    }).save().then((doc)=>{
-        console.log(doc)
-    }, (err)=>{
-        res.send(err)
-    })
+//    new Cinema({
+//        name : "Cash and Carry Cinema 1",
+//        mall : "Cash and Carry",
+//        city : "Pasay City",
+//        movies : []
+//    }).save().then((doc)=>{
+//        console.log(doc)
+//    }, (err)=>{
+//        res.send(err)
+//    })
+//    
+//    new Cinema({
+//        name : "Cash and Carry Cinema 2",
+//        mall : "Cash and Carry",
+//        city : "Pasay City",
+//        movies : []
+//    }).save().then((doc)=>{
+//        console.log(doc)
+//    }, (err)=>{
+//        res.send(err)
+//    })
+//    
+//    new Cinema({
+//        name : "Cash and Carry Cinema 3",
+//        mall : "Cash and Carry",
+//        city : "Pasay City",
+//        movies : []
+//    }).save().then((doc)=>{
+//        console.log(doc)
+//    }, (err)=>{
+//        res.send(err)
+//    })
     
     if(req.cookies["current_user"]){
         if(req.cookies["current_user"] == "admin")
@@ -377,6 +361,26 @@ app.get("/addScreeningModeratorPage", (req,res)=>{
 })
 
 app.get("/editScreeningModeratorPage", (req,res)=>{
+//    Cinema.findOne({
+//        "movies._id" : req.query.id
+//    }, (err,doc)=>{
+//        if(err){
+//            res.send(err)
+//        }else{
+//            Movie.find({}, (err,docs)=>{
+//                if(err){
+//                   res.send(err)
+//                }else{
+//                    res.render("editScreeningModeratorPage.hbs", {
+//                        username: req.cookies["current_user"],
+//                        movies: docs,
+//                        movid: req.query.id
+//                    })
+//                }
+//            })
+//        }
+//    })
+    
     Cinema.findOne({
         "movies._id" : req.query.id
     }, (err,doc)=>{
@@ -639,6 +643,41 @@ app.post("/searchScreen", (req,res)=>{
 
 app.post("/editscreen", urlencoder,(req,res)=>{
     let movie = req.body.movie
+    let showtime = req.body.showtime
+    
+    let dateNow = new Date()
+    
+    let tempDate = new Date(showtime)
+    
+    let checkTime = tempDate.getHours()
+    let checkMinutes = tempDate.getMinutes()
+    
+    let ampm = (tempDate.getHours() >= 12) ? "PM" : "AM";
+    
+    if(checkTime > 12)
+        checkTime = checkTime - 12
+    else if(checkTime == 0)
+        checkTime = 12
+    
+    if(checkMinutes <= 9)
+        checkMinutes = "0" + tempDate.getMinutes()
+    
+    let tempTime = checkTime + ":" + checkMinutes + " " + ampm
+    
+    console.log("tempDate is: " + tempDate)
+    console.log("tempTime is: " + tempTime)
+    
+     let cinema_rated
+     let cinema_title
+     let cinema_genre
+     let cinema_duration
+     let cinema_mpaa_rating 
+     let cinema_star_rating 
+     let cinema_release_date
+     let cinema_description 
+     let cinema_casts
+     let cinema_director
+     let cinema_image
     
     Movie.findOne({
         title: movie
@@ -646,15 +685,52 @@ app.post("/editscreen", urlencoder,(req,res)=>{
         if(err){
            res.send(err)
         }else{
-            Cinema.updateOne({
-                "movies._id" : req.body.id
-            }, {
-                movies: docs
-            }, (err, doc)=>{
-                if(err){
+            Cinema.findOne({
+//                "movies._id" : req.body.id
+                "movies.title": movie
+            }, (err, docsss)=>{
+                if(err)
                     res.send(err)
-                }else{
-                    res.redirect("/viewScreeningModeratorPage")
+                
+                else{
+                 cinema_rated = docsss.rated
+                 cinema_title = docsss.title
+                 cinema_genre = docsss.genre
+                 cinema_duration = docsss.duration
+                 cinema_mpaa_rating = docsss.mpaa_rating
+                 cinema_star_rating = docsss.star_rating
+                 cinema_release_date = docsss.release_date
+                 cinema_description = docsss.description
+                 cinema_casts = docsss.casts
+                 cinema_director = docsss.director
+                 cinema_image = docsss.image
+                    
+                    Cinema.updateOne({
+                        "movies._id" : req.body.id
+                    }, {
+                         rated: cinema_rated,
+                         title : cinema_title,
+                         genre : cinema_genre,
+                         duration : cinema_duration,
+                         mpaa_rating : cinema_mpaa_rating,
+                         star_rating : cinema_star_rating,
+                         release_date : cinema_release_date,
+                         description : cinema_description,
+                         casts : cinema_casts,
+                         director : cinema_director,
+                         image : cinema_image,
+                         schedules : [{
+                            date : tempDate,
+                            showtimes : [tempTime]
+                         }]
+                    }, (err, doc)=>{
+                        if(err){
+                            res.send(err)
+                        }else{
+                            res.redirect("/viewScreeningModeratorPage")
+                        }
+                    })
+                    
                 }
             })
         }
@@ -665,20 +741,146 @@ app.post("/addscreen", urlencoder,(req,res)=>{
     let movie = req.body.movie
     let cinema = req.body.cinema
     let showtime = req.body.showtime
+    let additional_times = req.body.additional_times
     
+    let dateNow = new Date()
     
+    let tempDate = new Date(showtime)
     
-    res.redirect("/viewScreeningModeratorPage")
+    let checkTime = tempDate.getHours()
+    let checkMinutes = tempDate.getMinutes()
+    
+    let ampm = (tempDate.getHours() >= 12) ? "PM" : "AM";
+    
+    if(checkTime > 12)
+        checkTime = checkTime - 12
+    else if(checkTime == 0)
+        checkTime = 12
+    
+    if(checkMinutes <= 9)
+        checkMinutes = "0" + tempDate.getMinutes()
+    
+    let tempTime = checkTime + ":" + checkMinutes + " " + ampm
+        
+    Cinema.findOne({
+        name: cinema
+    }, (err, docs)=>{
+        if(err)
+            res.send(err)
+        else{
+            Movie.findOne({
+                title: movie
+            }, (err, moviedoc)=>{
+                if(err)
+                    res.send(err)
+                else{
+                    if(additional_times == ""){
+                        Cinema.updateOne({
+                            name: cinema
+                        }, {
+                            $push: {
+                                movies: {
+                                    $each: [{rated: moviedoc.rated,
+                                             title : moviedoc.title,
+                                             genre : moviedoc.genre,
+                                             duration : moviedoc.duration,
+                                             mpaa_rating : moviedoc.mpaa_rating,
+                                             star_rating : moviedoc.star_rating,
+                                             release_date : moviedoc.release_date,
+                                             description : moviedoc.description,
+                                             casts : moviedoc.casts,
+                                             director : moviedoc.director,
+                                             image : moviedoc.image,
+                                             schedules : [{
+                                                date : tempDate,
+                                                showtimes : [tempTime]
+                                             }]}
+                                           ],
+                                }
+                            }
+                        }, (err, doc)=>{
+                            if(err){
+                                res.send(err)
+                            }else{
+                                res.redirect("/viewScreeningModeratorPage")
+                            }
+                        }) 
+                    }
+                    
+                    else{
+                        let showtime_strings = tempTime + ", " + additional_times
+                        
+                        Cinema.updateOne({
+                            name: cinema
+                        }, {
+                            $push: {
+                                movies: {
+                                    $each: [{rated: moviedoc.rated,
+                                             title : moviedoc.title,
+                                             genre : moviedoc.genre,
+                                             duration : moviedoc.duration,
+                                             mpaa_rating : moviedoc.mpaa_rating,
+                                             star_rating : moviedoc.star_rating,
+                                             release_date : moviedoc.release_date,
+                                             description : moviedoc.description,
+                                             casts : moviedoc.casts,
+                                             director : moviedoc.director,
+                                             image : moviedoc.image,
+                                             schedules : [{
+                                                date : tempDate,
+                                                showtimes : showtime_strings.split("\,")
+                                             }]}
+                                           ],
+                                }
+                            }
+                        }, (err, doc)=>{
+                            if(err){
+                                res.send(err)
+                            }else{
+                                res.redirect("/viewScreeningModeratorPage")
+                            }
+                        }) 
+                    }               
+                }
+            })
+        }            
+    })    
 })
 
 app.post("/deletescreen", urlencoder,(req,res)=>{
-    Cinema.deleteOne({
+    
+    let cinema_name;
+    let cinema_mall;
+    let cinema_city;
+    
+    Cinema.findOne({
         "movies._id" : req.body.id
-    } ,(err,doc)=>{
-        if(err){
+    }, (err, cinemadoc)=>{
+        if(err)
             res.send(err)
-        }else{
-            res.redirect("/viewScreeningModeratorPage")
+        else{
+            cinema_name = cinemadoc.name
+            cinema_mall = cinemadoc.mall
+            cinema_city = cinemadoc.city
+            
+            Cinema.deleteOne({
+                "movies._id" : req.body.id
+            } ,(err,doc)=>{
+                if(err){
+                    res.send(err)
+                }else{
+                    new Cinema({
+                        name : cinema_name,
+                        mall : cinema_mall,
+                        city : cinema_city,
+                        movies : []
+                    }).save().then((docc)=>{
+                        res.redirect("/viewScreeningModeratorPage")                        
+                    }, (err)=>{
+                        res.send(err)
+                    })
+                }
+            })
         }
     })
 })
@@ -842,7 +1044,7 @@ app.get("/logout", (req, res)=>{
 })
 
 app.listen(portNumber, ()=>{
-    //console.log("live at port " + portNumber)
+    console.log("live at port 3000")
 })
 
 function formatDate(date){
